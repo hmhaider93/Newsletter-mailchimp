@@ -4,7 +4,6 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 const apiKeys = require('./apiKeys');
-const { mailChimpUniqueId } = require('./apiKeys');
 
 //setting mail chimp configurations
 mailchimp.setConfig({
@@ -35,7 +34,7 @@ app.post('/', function(req,res){
     console.log("Last Name: " +lastName );
     console.log("email : " +email );
 
-    const listId = mailChimpUniqueId();
+    const listId = apiKeys.mailChimpUniqueId();
 
     // var data = {
     //     members: [
