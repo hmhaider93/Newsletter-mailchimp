@@ -3,10 +3,12 @@ const https = require('https');
 const request = require('request');
 const bodyParser = require('body-parser');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
+const apiKeys = require('./apiKeys');
+const { mailChimpUniqueId } = require('./apiKeys');
 
 //setting mail chimp configurations
 mailchimp.setConfig({
-    apiKey: "8993bbe42a24115e956ab9353653e7be-us1",
+    apiKey: apiKeys.mailChimpApiKey(),
     server: "us1"
 })
 
@@ -33,7 +35,7 @@ app.post('/', function(req,res){
     console.log("Last Name: " +lastName );
     console.log("email : " +email );
 
-    const listId = "68ea939cd4"
+    const listId = mailChimpUniqueId();
 
     // var data = {
     //     members: [
@@ -69,8 +71,3 @@ app.post('/', function(req,res){
 app.listen(port, () => console.log("Newsletter app listening on port: "+ port+"!"));
 
 
-//API KEY
-// 8993bbe42a24115e956ab9353653e7be-us1
-
-// Unique Id / Audience ID
-// 68ea939cd4
